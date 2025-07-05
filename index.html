@@ -1,166 +1,310 @@
- <!DOCTYPE html>
- <html lang="en">
- <head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>titans gym</title>
-<link rel="stylesheet" href="style.css">
-<link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-/>
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="optimized/muscleguy.webp" as="image" type="image/webp">
+    <link rel="preload" href="optimized/logo.webp" as="image" type="image/webp">
+    <link rel="preload" href="style.min.css" as="style">
+    
+    <!-- Critical CSS inline (will be added later) -->
+    <style>
+        /* Critical CSS for above-the-fold content */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+        }
+        nav {
+            background-color: #111;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #e63946;
+            padding: 0px;
+        }
+        #home {
+            background: url('optimized/muscleguy.webp') no-repeat center center/cover;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+        .home-content {
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 40px;
+            border-radius: 10px;
+        }
+        .home-content h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        .home-content h1 .brand {
+            color: #e63946;
+        }
+        .home-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+        .cta-button {
+            background-color: #e63946;
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .cta-button:hover {
+            background-color: #c72f3c;
+        }
+        /* Loading animation */
+        .loading {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.3s, transform 0.3s;
+        }
+        .loaded {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+    
+    <!-- Load non-critical CSS asynchronously -->
+    <link rel="preload" href="style.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="style.min.css"></noscript>
+    
+    <!-- Font Awesome with fallback -->
+    <link
+        rel="preload"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        as="style"
+        onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
 </head>
- <body>
-   <nav>
-    <div class="logo"> <img height="40px" src="1751664044727.png" alt="Titans Gym"></div>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="#home">Home</a></li>
-      <li><a href="#pricing">Pricing</a></li>
-      <li><a href="#testimony">Testimonials</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-    <div class="hamburger" id="hamburger">
-      <div></div>
-      <div></div>
-      <div></div>
+<body>
+    <nav>
+        <div class="logo">
+            <picture>
+                <source srcset="optimized/logo.webp" type="image/webp">
+                <img height="40" src="optimized/logo.png" alt="Titans Gym" loading="eager">
+            </picture>
+        </div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="#testimony">Testimonials</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="hamburger" id="hamburger">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </nav>
+
+    <section id="home">
+        <div class="home-content loading">
+            <h1>Welcome to <span class="brand">Titans Gym</span></h1>
+            <p>Unleash your inner strength. Transform your body. Join the tribe of Titans.</p>
+            <a href="#programs" class="cta-button">Explore Programs</a>
+        </div>
+    </section>
+
+    <section id="pricing" class="loading">
+        <h2 class="pricing-title">Choose Your Plan</h2>
+        <div class="pricing-container">
+            <!-- Normal Plan -->
+            <div class="pricing-card">
+                <h3>Normal</h3>
+                <p class="price">1000birr/month</p>
+                <ul>
+                    <li>Access to gym equipment</li>
+                    <li>Locker & shower</li>
+                    <li>1 class/week</li>
+                </ul>
+                <a href="#" class="pricing-btn">Join Now</a>
+            </div>
+
+            <!-- Premium Plan -->
+            <div class="pricing-card featured">
+                <h3>Premium</h3>
+                <p class="price">3499birr/month</p>
+                <ul>
+                    <li>Everything in Normal</li>
+                    <li>Unlimited classes</li>
+                    <li>1 Personal Trainer session/week</li>
+                </ul>
+                <a href="#" class="pricing-btn">Join Premium</a>
+            </div>
+
+            <!-- Platinum Plan -->
+            <div class="pricing-card">
+                <h3>Platinum</h3>
+                <p class="price">7999birr/month</p>
+                <ul>
+                    <li>Everything in Premium</li>
+                    <li>Dedicated Trainer</li>
+                    <li>Diet Consultation</li>
+                </ul>
+                <a href="#" class="pricing-btn">Join Platinum</a>
+            </div>
+        </div>
+    </section>
+
+    <div id="testimony" class="loading">
+        <section class="testimonials-section">
+            <h2>What Our Members Say</h2>
+            <div class="testimonial-container">
+                <button class="nav-btn prev-btn" aria-label="Previous testimonial">&#10094;</button>
+
+                <div class="testimonial-slide active" data-index="0">
+                    <img src="https://i.pravatar.cc/100?img=12" alt="Avatar of Sarah" class="avatar" loading="lazy" />
+                    <p class="quote">"Joining Titans Gym transformed my fitness journey. The trainers are amazing!"</p>
+                    <h4 class="name">Sarah K.</h4>
+                    <p class="role">Fitness Enthusiast</p>
+                </div>
+
+                <div class="testimonial-slide" data-index="1">
+                    <img src="https://i.pravatar.cc/100?img=25" alt="Avatar of Mike" class="avatar" loading="lazy" />
+                    <p class="quote">"The facilities are top-notch and the community is so supportive."</p>
+                    <h4 class="name">Mike R.</h4>
+                    <p class="role">Athlete</p>
+                </div>
+
+                <div class="testimonial-slide" data-index="2">
+                    <img src="https://i.pravatar.cc/100?img=31" alt="Avatar of Jenny" class="avatar" loading="lazy" />
+                    <p class="quote">"I love the variety of classes and personalized coaching available."</p>
+                    <h4 class="name">Jenny L.</h4>
+                    <p class="role">Yoga Lover</p>
+                </div>
+
+                <div class="testimonial-slide" data-index="3">
+                    <img src="https://i.pravatar.cc/100?img=48" alt="Avatar of David" class="avatar" loading="lazy" />
+                    <p class="quote">"Friendly staff and clean environment keep me coming back every week."</p>
+                    <h4 class="name">David M.</h4>
+                    <p class="role">Regular Member</p>
+                </div>
+
+                <button class="nav-btn next-btn" aria-label="Next testimonial">&#10095;</button>
+            </div>
+        </section>
     </div>
-  </nav>
-  <section id="home">
-  <div class="home-content">
-    <h1>Welcome to <span class="brand">Titans Gym</span></h1>
-    <p>Unleash your inner strength. Transform your body. Join the tribe of Titans.</p>
-    <a href="#programs" class="cta-button">Explore Programs</a>
-  </div>
-</section>
-<section id="pricing">
-  <h2 class="pricing-title">Choose Your Plan</h2>
-  <div class="pricing-container">
-    <!-- Normal Plan -->
-    <div class="pricing-card">
-      <h3>Normal</h3>
-      <p class="price">1000birr/month</p>
-      <ul>
-        <li>Access to gym equipment</li>
-        <li>Locker & shower</li>
-        <li>1 class/week</li>
-      </ul>
-      <a href="#" class="pricing-btn">Join Now</a>
+
+    <div id="contact" class="loading">
+        <footer class="contact-footer">
+            <div class="contact-container">
+                <div class="social-media">
+                    <h3>Follow Us</h3>
+                    <a href="#" aria-label="Facebook" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Twitter" class="social-icon"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="Instagram" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="LinkedIn" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+                <div class="map">
+                    <h3>Our Location</h3>
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.019017312088!2d-122.41941548468167!3d37.774929779759336!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80858064f37efbdb%3A0x3e830d346b3aab03!2sSan%20Francisco%2C%20CA!5e0!3m2!1sen!2sus!4v1600000000000!5m2!1sen!2sus"
+                        width="100%" height="200" style="border:0;" allowfullscreen="" loading="lazy">
+                    </iframe>
+                </div>
+            </div>
+            <p class="copyright">© 2025 Titans Gym. All rights reserved.</p>
+        </footer>
     </div>
 
-    <!-- Premium Plan -->
-    <div class="pricing-card featured">
-      <h3>Premium</h3>
-      <p class="price">3499birr/month</p>
-      <ul>
-        <li>Everything in Normal</li>
-        <li>Unlimited classes</li>
-        <li>1 Personal Trainer session/week</li>
-      </ul>
-      <a href="#" class="pricing-btn">Join Premium</a>
-    </div>
+    <!-- Optimized JavaScript -->
+    <script>
+        // Performance optimizations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Lazy load animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '50px'
+            };
 
-    <!-- Platinum Plan -->
-    <div class="pricing-card">
-      <h3>Platinum</h3>
-      <p class="price">7999birr/month</p>
-      <ul>
-        <li>Everything in Premium</li>
-        <li>Dedicated Trainer</li>
-        <li>Diet Consultation</li>
-      </ul>
-      <a href="#" class="pricing-btn">Join Platinum</a>
-    </div>
-  </div>
-</section>
-<div id="testimony">
-<section class="testimonials-section">
-  <h2>What Our Members Say</h2>
-  <div class="testimonial-container">
-    <button class="nav-btn prev-btn" aria-label="Previous testimonial">&#10094;</button>
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('loaded');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
 
-    <div class="testimonial-slide active" data-index="0">
-      <img src="https://i.pravatar.cc/100?img=12" alt="Avatar of Sarah" class="avatar" />
-      <p class="quote">"Joining Titans Gym transformed my fitness journey. The trainers are amazing!"</p>
-      <h4 class="name">Sarah K.</h4>
-      <p class="role">Fitness Enthusiast</p>
-    </div>
+            document.querySelectorAll('.loading').forEach(el => {
+                observer.observe(el);
+            });
 
-    <div class="testimonial-slide" data-index="1">
-      <img src="https://i.pravatar.cc/100?img=25" alt="Avatar of Mike" class="avatar" />
-      <p class="quote">"The facilities are top-notch and the community is so supportive."</p>
-      <h4 class="name">Mike R.</h4>
-      <p class="role">Athlete</p>
-    </div>
+            // Hamburger menu
+            const hamburger = document.getElementById('hamburger');
+            const navLinks = document.getElementById('navLinks');
 
-    <div class="testimonial-slide" data-index="2">
-      <img src="https://i.pravatar.cc/100?img=31" alt="Avatar of Jenny" class="avatar" />
-      <p class="quote">"I love the variety of classes and personalized coaching available."</p>
-      <h4 class="name">Jenny L.</h4>
-      <p class="role">Yoga Lover</p>
-    </div>
+            hamburger.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
 
-    <div class="testimonial-slide" data-index="3">
-      <img src="https://i.pravatar.cc/100?img=48" alt="Avatar of David" class="avatar" />
-      <p class="quote">"Friendly staff and clean environment keep me coming back every week."</p>
-      <h4 class="name">David M.</h4>
-      <p class="role">Regular Member</p>
-    </div>
+            // Testimonial slider
+            const slides = document.querySelectorAll('.testimonial-slide');
+            const prevBtn = document.querySelector('.prev-btn');
+            const nextBtn = document.querySelector('.next-btn');
+            let currentIndex = 0;
 
-    <button class="nav-btn next-btn" aria-label="Next testimonial">&#10095;</button>
-  </div>
-</section>
-</div>
-<div id="contact">
-<footer class="contact-footer">
-  <div class="contact-container">
-    <div class="social-media">
-      <h3>Follow Us</h3>
-      <a href="#" aria-label="Facebook" class="social-icon"><i class="fab fa-facebook-f"></i></a>
-      <a href="#" aria-label="Twitter" class="social-icon"><i class="fab fa-twitter"></i></a>
-      <a href="#" aria-label="Instagram" class="social-icon"><i class="fab fa-instagram"></i></a>
-      <a href="#" aria-label="LinkedIn" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
-    </div>
-    <div class="map">
-      <h3>Our Location</h3>
-      <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.019017312088!2d-122.41941548468167!3d37.774929779759336!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80858064f37efbdb%3A0x3e830d346b3aab03!2sSan%20Francisco%2C%20CA!5e0!3m2!1sen!2sus!4v1600000000000!5m2!1sen!2sus"
-        width="100%" height="200" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-    </div>
-  </div>
-  <p class="copyright">© 2025 Titans Gym. All rights reserved.</p>
-</footer>
-</div>
-  <script>
-    const hamburger = document.getElementById('hamburger');
-    const navLinks = document.getElementById('navLinks');
+            function showSlide(index) {
+                slides.forEach((slide) => slide.classList.remove('active'));
+                slides[index].classList.add('active');
+            }
 
-    hamburger.addEventListener('click', () => {
-      navLinks.classList.toggle('active');
-    });
-     const slides = document.querySelectorAll('.testimonial-slide');
-  const prevBtn = document.querySelector('.prev-btn');
-  const nextBtn = document.querySelector('.next-btn');
+            prevBtn.addEventListener('click', () => {
+                currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+                showSlide(currentIndex);
+            });
 
-  let currentIndex = 0;
+            nextBtn.addEventListener('click', () => {
+                currentIndex = (currentIndex + 1) % slides.length;
+                showSlide(currentIndex);
+            });
 
-  function showSlide(index) {
-    slides.forEach((slide) => slide.classList.remove('active'));
-    slides[index].classList.add('active');
-  }
+            // Preload next slide images
+            slides.forEach((slide, index) => {
+                if (index !== 0) {
+                    const img = slide.querySelector('img');
+                    if (img) {
+                        const preloadImg = new Image();
+                        preloadImg.src = img.src;
+                    }
+                }
+            });
 
-  prevBtn.addEventListener('click', () => {
-    currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-    showSlide(currentIndex);
-  });
+            // Initialize first slide
+            showSlide(currentIndex);
+        });
 
-  nextBtn.addEventListener('click', () => {
-    currentIndex = (currentIndex + 1) % slides.length;
-    showSlide(currentIndex);
-  });
-
-  // Initialize first slide visible
-  showSlide(currentIndex);
-  </script>
-
- </body>
- </html>
+        // Service Worker for caching (optional)
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js').catch(() => {
+                    // Service worker registration failed, continue normally
+                });
+            });
+        }
+    </script>
+</body>
+</html>
